@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentinel"
+version = "0.1.0"
+description = "A small self-hosted synthetic-monitoring service (HTTP/TCP/DNS) with Prometheus metrics and a status page."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Armando Gomez" }]
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "pydantic>=2",
+    "prometheus-client>=0.20",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "httpx>=0.27"]
+
+[project.scripts]
+sentinel = "sentinel.server:main"
+
+[tool.setuptools]
+packages = ["sentinel"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
